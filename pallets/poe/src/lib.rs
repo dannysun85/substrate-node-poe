@@ -48,6 +48,7 @@ pub mod pallet {
     pub enum Event<T: Config> {
         ClaimCreated(T::AccountId, Vec<u8>),
         ClaimRevoked(T::AccountId, Vec<u8>),
+        ClaimTransferred(T::AccountId, Vec<u8>, T::AccountId),
     }
 
     // Errors inform users that something went wrong.
@@ -66,7 +67,7 @@ pub mod pallet {
     #[pallet::call]
     impl<T: Config> Pallet<T> {
         #[pallet::weight(10_000 + T::DbWeight::get().writes(1))]
-       pub fn create_claim(origin:OriginFor<T>, claim: Vec<u8>) -> DispatchResultWithPostInfo {
+        pub fn create_claim(origin:OriginFor<T>, claim: Vec<u8>) -> DispatchResultWithPostInfo {
             let sender = ensure_signed(origin)?;
             let bounded_claim = BoundedVec::<u8,T::MaxClaimLength>::try_from(claim.clone())
                 .map_err(|_| Error::<T>::ClaimTooLong)?;
@@ -76,5 +77,30 @@ pub mod pallet {
             Self::deposit_event(Event::ClaimCreated(sender, claim));
             Ok(().into())
         }
+
+        #[pallet::weight(10_000 + T::DbWeight::get().writes(1))]
+        pub fn revoke_claim(origin: OriginFor<T>, claim: Vec<u8>) -> DispatchResultWithPostInfo {
+            let sender = ensure_signed(origin)?;
+            let bounded_claim = BoundedVec::<u8,T::MaxClaimLength>::try_from(claim.clone())
+                .map_err(|_| Error::<T>::ClaimTooLong)?;
+            let (owner, _) =Proofs::<T>::get(&bounded_claim).ok_or(Error::<T>::ClaimNotExist)?;
+            ensure!(owner == sender, Error::<T>::NotClaimOwner);
+            Proofs::<T>::remove(&bounded_claim);
+            Self::deposit_event(Event::ClaimRevoked(sender, claim));
+            Ok(().into())
+        }
+
+        #[pallet::weight(10_000 + T::DbWeight::get().writes(1))]
+        pub fn transfer_claim(origin: OriginFor<T>, claim: Vec<u8>, dest:T::AccountId) -> DispatchResultWithPostInfo {
+            let sender = ensure_signed(origin)?;
+            let bounded_claim = BoundedVec::<u8,T::MaxClaimLength>::try_from(claim.clone())
+                .map_err(|_| Error::<T>::ClaimTooLong)?;
+            let (owner, _block_number) =Proofs::<T>::get(&bounded_claim).ok_or(Error::<T>::ClaimNotExist)?;
+            ensure!(owner == sender, Error::<T>::NotClaimOwner);
+            Proofs::<T>::insert(&bounded_claim, (dest.clone(), frame_system::Pallet::<T>::block_number()));
+            Self::deposit_event(Event::ClaimTransferred(sender, claim, dest));
+            Ok(().into())
+        }
+
     }
 }

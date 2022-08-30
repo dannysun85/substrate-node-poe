@@ -267,7 +267,7 @@ impl pallet_sudo::Config for Runtime {
 
 /// Configure the pallet-template in pallets/template.
 impl pallet_poe::Config for Runtime {
-	type MaxClaimLength = ();
+	type MaxClaimLength = ConstU32<512>;
 	type Event = Event;
 }
 
