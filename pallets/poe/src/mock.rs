@@ -1,5 +1,5 @@
 use crate as pallet_poe;
-use frame_support::traits::{ConstU16, ConstU64};
+use frame_support::traits::{ConstU16, ConstU32, ConstU64};
 use frame_system as system;
 use sp_core::H256;
 use sp_runtime::{
@@ -17,8 +17,8 @@ frame_support::construct_runtime!(
 		NodeBlock = Block,
 		UncheckedExtrinsic = UncheckedExtrinsic,
 	{
-		System: frame_system,
-		PoeModule: pallet_poe,
+		System: frame_system::{Pallet,Call,Config,Storage, Event<T>},
+		PoeModule: pallet_poe::{Pallet,Call,Storage,Event<T>},
 	}
 );
 
@@ -26,7 +26,6 @@ impl system::Config for Test {
     type BaseCallFilter = frame_support::traits::Everything;
     type BlockWeights = ();
     type BlockLength = ();
-    type DbWeight = ();
     type Origin = Origin;
     type Call = Call;
     type Index = u64;
@@ -38,6 +37,7 @@ impl system::Config for Test {
     type Header = Header;
     type Event = Event;
     type BlockHashCount = ConstU64<250>;
+    type DbWeight = ();
     type Version = ();
     type PalletInfo = PalletInfo;
     type AccountData = ();
@@ -50,6 +50,7 @@ impl system::Config for Test {
 }
 
 impl pallet_poe::Config for Test {
+    type MaxClaimLength = ConstU32<512>;
     type Event = Event;
 }
 
