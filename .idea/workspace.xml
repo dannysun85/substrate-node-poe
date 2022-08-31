@@ -16,9 +16,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d105cf3-7255-40fc-9bc2-96fad4e4742a" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/substrate-node-poe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/substrate-node-poe.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pallets/poe/src/mock.rs" beforeDir="false" afterPath="$PROJECT_DIR$/pallets/poe/src/mock.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pallets/poe/src/tests.rs" beforeDir="false" afterPath="$PROJECT_DIR$/pallets/poe/src/tests.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,12 +56,12 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/cc/Documents/RustProject/oneblock/substrate-node-poe&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/dc/Documents/rustProjects/oneblock/substrate-node-poe&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;org.rust.cargo.project.model.PROJECT_DISCOVERY&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Cargo.Test tests::create_claim_failed_when_claim_already_exists">
+  <component name="RunManager" selected="Cargo.Test tests::transfer_claim_works">
     <configuration name="Test lib::tests" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
       <option name="command" value="test --package pallet-poe --lib tests" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
@@ -115,10 +113,46 @@
         <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test tests::remove_claim_works" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="command" value="test --package pallet-poe --lib tests::remove_claim_works -- --exact" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <option name="channel" value="DEFAULT" />
+      <option name="requiredFeatures" value="true" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="withSudo" value="false" />
+      <option name="buildTarget" value="REMOTE" />
+      <option name="backtrace" value="SHORT" />
+      <envs />
+      <option name="isRedirectInput" value="false" />
+      <option name="redirectInputPath" value="" />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test tests::transfer_claim_works" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="command" value="test --package pallet-poe --lib tests::transfer_claim_works -- --exact" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <option name="channel" value="DEFAULT" />
+      <option name="requiredFeatures" value="true" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="withSudo" value="false" />
+      <option name="buildTarget" value="REMOTE" />
+      <option name="backtrace" value="SHORT" />
+      <envs />
+      <option name="isRedirectInput" value="false" />
+      <option name="redirectInputPath" value="" />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Cargo.Test tests::create_claim_failed_when_claim_already_exists" />
+        <item itemvalue="Cargo.Test tests::transfer_claim_works" />
         <item itemvalue="Cargo.Test lib::tests" />
+        <item itemvalue="Cargo.Test tests::remove_claim_works" />
+        <item itemvalue="Cargo.Test tests::create_claim_failed_when_claim_already_exists" />
         <item itemvalue="Cargo.Test tests::create_claim_works" />
       </list>
     </recent_temporary>
@@ -137,6 +171,9 @@
       <updated>1661861476282</updated>
       <workItem from="1661861477599" duration="5407000" />
       <workItem from="1661875799495" duration="3068000" />
+      <workItem from="1661925375922" duration="3457000" />
+      <workItem from="1661942506960" duration="231000" />
+      <workItem from="1661942754572" duration="4297000" />
     </task>
     <servers />
   </component>
